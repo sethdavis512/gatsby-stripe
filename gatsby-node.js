@@ -1,7 +1,49 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
+const kebabCase = require('lodash/kebabCase')
 
-// You can delete this file if you're not using it
+require('dotenv').config({
+    path: `.env.${process.env.NODE_ENV}`
+})
+
+exports.createPages = async ({ graphql, actions }) => {
+    const { createPage } = actions
+
+    const result = await graphql(`
+        query {
+            allStripePrice {
+                edges {
+                    node {
+                        active
+                        id
+                        unit_amount
+                        currency
+                        product {
+                            name
+                            description
+                        }
+                    }
+                }
+            }
+        }
+    `)
+
+    result.data.allStripePrice.edges.forEach(edge => {
+        const { active, product, unit_amount: price, id } = edge.node
+        const { description, name, images } = product
+
+        if (active) {
+            createPage({
+                path: `${kebabCase(name)}`,
+                component: require.resolve('./src/pages/product.tsx'),
+                context: {
+                    product: {
+                        id,
+                        name,
+                        description,
+                        price,
+                        images
+                    }
+                }
+            })
+        }
+    })
+}

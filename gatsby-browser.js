@@ -4,4 +4,14 @@
  * See: https://www.gatsbyjs.com/docs/browser-apis/
  */
 
-// You can delete this file if you're not using it
+const React = require('react')
+
+const { CartProvider } = require('./src/contexts/cart/CartProvider')
+
+exports.wrapRootElement = ({ element }) => {
+    return (
+        <CartProvider>
+            {element}
+        </CartProvider>
+    )
+}
