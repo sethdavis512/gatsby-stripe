@@ -3,19 +3,15 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 const StyledHeader = styled.header`
-    background: ${(({ theme }) => theme.primary)};
-    marginBottom: 1.45rem;
+    background: ${({ theme }) => theme.primary};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 `
 
 const Header = ({ children, siteTitle }) => (
     <StyledHeader>
-        <div
-            style={{
-                margin: `0 auto`,
-                maxWidth: 960,
-                padding: `1.45rem 1.0875rem`
-            }}
-        >
+        <div style={{ paddingLeft: '2rem' }}>
             <h1 style={{ margin: 0 }}>
                 <Link
                     to="/"
@@ -28,7 +24,7 @@ const Header = ({ children, siteTitle }) => (
                 </Link>
             </h1>
         </div>
-        {children}
+        <div>{children}</div>
     </StyledHeader>
 )
 

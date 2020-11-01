@@ -8,7 +8,7 @@ import Header from './Header'
 import Button from './Button'
 import Wrapper from './Wrapper'
 import Footer from './Footer'
-import Grid from './Grid'
+import SiteGrid from './SiteGrid'
 import GlobalStyles from './GlobalStyles'
 import { darkTheme, lightTheme } from '../themes'
 
@@ -23,27 +23,21 @@ const Layout = ({ children }) => {
         }
     `)
 
-    const [isDarkMode, setDarkMode] = useDarkMode();
+    const [isDarkMode, setDarkMode] = useDarkMode()
     const toggleDarkMode = () => setDarkMode(!isDarkMode)
 
     return (
         <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
             <GlobalStyles />
-            <Header siteTitle={data.site.siteMetadata?.title || `Title`}>
-                <Button onClick={toggleDarkMode}>
-                    Change to {isDarkMode ? 'Light' : 'Dark' } Mode
-                </Button>
-            </Header>
-            <Wrapper>
-                <main>
-                    <Grid>
-                        {children}
-                    </Grid>
-                </main>
-            </Wrapper>
-            <Footer>
-                Foooooooter
-            </Footer>
+            <SiteGrid>
+                <Header siteTitle={data.site.siteMetadata?.title || `Title`}>
+                    <Button onClick={toggleDarkMode}>
+                        Change to {isDarkMode ? 'Light' : 'Dark'} Mode
+                    </Button>
+                </Header>
+                <Wrapper>{children}</Wrapper>
+                <Footer>Foooooooter</Footer>
+            </SiteGrid>
         </ThemeProvider>
     )
 }
