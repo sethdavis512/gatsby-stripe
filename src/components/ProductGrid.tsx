@@ -8,12 +8,10 @@ const StyledProductGrid = styled.div`
     padding: 1rem 2rem;
 
     @media (min-width: 768px) {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr 300px;
     }
 
-    @media (min-width: 960px) {
-        grid-template-columns: repeat(4, 1fr);
-    }
+    @media (min-width: 960px) {}
 `
 
 const ProductGrid = ({ children }) => {
