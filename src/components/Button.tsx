@@ -11,8 +11,8 @@ const Button = styled.button`
     padding: 0.25em 1em;
 
     &:hover {
-        border: 2px solid ${({ theme }) => theme.primary};
-        color: ${({ theme }) => theme.primary};
+        border: 2px solid ${({ theme }) => theme.secondary};
+        color: ${({ theme }) => theme.secondary};
     }
 `
 

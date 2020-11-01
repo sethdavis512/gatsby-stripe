@@ -21,14 +21,17 @@ const useProducts = () => {
         }
     `)
 
-    const products = data.allStripePrice.edges.map(edge => ({
-        active: edge.node.active,
-        id: edge.node.id,
-        name: edge.node.product.name,
-        description: edge.node.product.description,
-        price: edge.node.unit_amount,
-        images: edge.node.product.images
-    }))
+    const products = data.allStripePrice.edges.map(edge => {
+        const { active, id, product, unit_amount } = edge.node
+        return {
+            active,
+            description: product.description,
+            id,
+            images: product.images,
+            name: product.name,
+            price: unit_amount
+        }
+    })
 
     return [products]
 }

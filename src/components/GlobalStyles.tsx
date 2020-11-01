@@ -8,11 +8,21 @@ const GlobalStyles = createGlobalStyle`
     transition: background-color 0.7s ease-out, color 0.7s ease-out;
     padding: 0;
     margin: 0;
+    font-family: Helvetica, sans-serif;
   }
 
   a {
     color: ${({ theme }) => theme.linkColor};
     transition: color 0.7s ease-out;
+  }
+
+  button {
+    transition: border-color 0.7s ease-out;
+  }
+
+  footer {
+    color: ${({ theme }) => theme.linkColor};
+    background-color: ${({ theme }) => theme.primary};
   }
 `
 

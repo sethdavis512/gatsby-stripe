@@ -1,27 +1,47 @@
 import Color from 'color'
 
-const background = Color('white')
-const primary = Color('#ffbe3d')
-const secondary = Color('tomato')
-const fontColor = Color('#2d2d2d')
+// Color utils
+const getHex = (colorObj) => colorObj.hex();
+const getInvertedHex = (colorObj) => colorObj.negate().hex();
 
-const backgroundInverted = Color('#2d2d2d')
-const primaryInverted = primary.negate()
-const secondaryInverted = secondary.negate()
-const fontColorInverted = fontColor.negate()
+// Initial colors
+const white = Color('#ffffff')
+const lightGrey = white.darken(0.25)
+const grey = white.darken(0.5)
+const darkGrey = white.darken(0.75)
+const darkerGrey = white.darken(0.85)
+const black = white.darken(1)
 
+const blue = Color('dodgerblue')
+const green = Color('forestgreen')
+
+// Derived colors
+const primary = blue
+const secondary = green
+
+// Generic variables
+const background = white
+const borderRadius = 12 
+const fontColor = darkGrey
+const linkColor = grey
+
+// Themes
 export const lightTheme = {
-    primary: primary.hex(),
-    secondary: secondary.hex(),
-    background: '#f2f2f2',
-    fontColor,
-    linkColor: 'red'
+    primary: getHex(primary),
+    secondary: getHex(secondary),
+    background: getHex(background),
+    borderRadius,
+    cardBackground: getHex(white),
+    borderColor: getHex(lightGrey),
+    fontColor: getHex(fontColor),
+    linkColor: getHex(linkColor),
 }
 
 export const darkTheme = {
-    primary: primaryInverted.hex(),
-    secondary: secondaryInverted.hex(),
-    background: backgroundInverted.hex(),
-    fontColor: fontColorInverted.hex(),
-    linkColor: 'purple'
+    ...lightTheme,
+    background: getHex(darkGrey),
+    cardBackground: getHex(darkerGrey),
+    borderColor: getHex(black),
+    fontColor: getHex(white),
+    linkColor: getHex(lightGrey),
 }
