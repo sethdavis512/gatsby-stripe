@@ -39,6 +39,7 @@ module.exports = {
                 secretKey: process.env.GATSBY_STRIPE_KEY,
                 downloadFiles: true
             }
-        }
+        },
+        `gatsby-plugin-styled-components`
     ]
 }

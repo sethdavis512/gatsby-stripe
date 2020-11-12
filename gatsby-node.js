@@ -12,11 +12,11 @@ exports.createPages = async ({ graphql, actions }) => {
             allStripePrice {
                 edges {
                     node {
-                        active
                         id
                         unit_amount
                         currency
                         product {
+                            active
                             name
                             description
                             images
@@ -28,8 +28,8 @@ exports.createPages = async ({ graphql, actions }) => {
     `)
 
     result.data.allStripePrice.edges.forEach(edge => {
-        const { active, product, unit_amount: price, id } = edge.node
-        const { description, name, images } = product
+        const { product, unit_amount: price, id } = edge.node
+        const { active, description, name, images } = product
 
         if (active) {
             createPage({

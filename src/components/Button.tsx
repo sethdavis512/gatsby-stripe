@@ -1,18 +1,16 @@
-import React from 'react'
 import styled from 'styled-components'
 
 const Button = styled.button`
-    background-color: ${({ theme }) => theme.background};
+    padding: 0.5rem 1rem;
     border-radius: 4px;
-    border: 2px solid ${({ theme }) => theme.secondary};
-    color: ${({ theme }) => theme.secondary};
-    font-size: 1em;
-    margin: 1em;
-    padding: 0.25em 1em;
+    color: ${({ theme }) => theme.white};
+    font-size: 16px;
+    background-color: ${({ theme }) => theme.primary};
+    border: 2px solid ${({ theme }) => theme.slate};
 
-    &:hover {
-        border: 2px solid ${({ theme }) => theme.secondary};
-        color: ${({ theme }) => theme.secondary};
+    :hover {
+        background-color: ${({ theme }) => theme.secondary};
+        border: 2px solid ${({ theme }) => theme.primary};
     }
 `
 

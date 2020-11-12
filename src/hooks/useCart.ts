@@ -9,14 +9,12 @@ import {
 import { CartContext } from '../contexts/cart/CartProvider'
 
 const useCart = () => {
-    // State
+    // Cart State
     const { state, dispatch } = useContext(CartContext)
-
     const totalQuantity = state.items.reduce(
         (total, currentItem) => (total += currentItem.quantity),
         0
     )
-
     const totalCost = state.items.reduce((total, currentItem) => {
         if (currentItem && currentItem.price && currentItem.quantity) {
             total += numeral(currentItem.price)
@@ -24,19 +22,8 @@ const useCart = () => {
                 .divide(100)
                 .value()
         }
-        return total;
+        return total
     }, 0)
-
-    // Actions
-    const addToCart = (product: any, quantity: number) =>
-        dispatch(addToCartHandler(product, quantity))
-
-    const clearCart = () => dispatch(clearCartHandler())
-
-    const removeItem = productId => dispatch(removeItemHandler(productId))
-
-    const removeLineItem = productId =>
-        dispatch(removeLineItemHandler(productId))
 
     const cart = {
         hasItems: state.items.length > 0,
@@ -44,6 +31,14 @@ const useCart = () => {
         totalCost,
         totalQuantity
     }
+
+    // Actions
+    const addToCart = (product: any, quantity: number) => {
+        dispatch(addToCartHandler(product, quantity))
+    }
+    const clearCart = () => dispatch(clearCartHandler())
+    const removeItem = id => dispatch(removeItemHandler(id))
+    const removeLineItem = id => dispatch(removeLineItemHandler(id))
 
     const cartActions = {
         addToCart,
