@@ -6,9 +6,14 @@ import { loadStripe } from '@stripe/stripe-js'
 import useCart from '../hooks/useCart'
 import Button from './Button'
 
+const CartContainer = styled.div`
+    margin-right: 0.5rem;
+`
+
 const CartList = styled.ul`
     list-style-type: none;
-    background-color: ${({ theme }) => theme.tertiary};
+    color: ${({ theme }) => theme.foreground};
+    background-color: ${({ theme }) => theme.background};
     padding: 1rem;
     position: absolute;
 `
@@ -32,15 +37,6 @@ const Cart = () => {
         cartActions.removeLineItem(id)
     }
 
-    const mappedCartItems = cart.items.map(item => (
-        <CartListItem key={kebabCase(item.name)}>
-            {item.name} - {item.quantity}
-            <Button onClick={createHandleRemoveItem(item.id)}>-</Button>
-            <Button onClick={createHandleAddItem(item)}>+</Button>
-            <Button onClick={createHandleRemoveLineItem(item.id)}>X</Button>
-        </CartListItem>
-    ))
-
     const handleCheckoutClick = async () => {
         const stripe = await stripePromise
 
@@ -58,24 +54,32 @@ const Cart = () => {
     }
 
     const [showCart, setShowCart] = useState(false)
-
     const handleShowCart = () => setShowCart(!showCart)
 
+    const mappedCartItems = cart.items.map(item => (
+        <CartListItem key={kebabCase(item.name)}>
+            {item.name} - {item.quantity}
+            <Button onClick={createHandleRemoveItem(item.id)}>-</Button>
+            <Button onClick={createHandleAddItem(item)}>+</Button>
+            <Button onClick={createHandleRemoveLineItem(item.id)}>X</Button>
+        </CartListItem>
+    ))
+
     return (
-        <>
+        <CartContainer>
             <Button onClick={handleShowCart}>🛒 {cart.totalQuantity}</Button>
             {showCart && (
                 <CartList>
                     {mappedCartItems}
-                    <li>
+                    <CartListItem>
                         <Button onClick={cartActions.clearCart}>
                             Clear cart
                         </Button>
                         <Button onClick={handleCheckoutClick}>Checkout</Button>
-                    </li>
+                    </CartListItem>
                 </CartList>
             )}
-        </>
+        </CartContainer>
     )
 }
 

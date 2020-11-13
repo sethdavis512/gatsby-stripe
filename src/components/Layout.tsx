@@ -3,26 +3,20 @@ import { useStaticQuery, graphql, Link } from 'gatsby'
 import styled, { ThemeProvider } from 'styled-components'
 
 import Button from './Button'
+import Container from './Container'
 import Cart from './Cart'
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
 import useDarkMode from '../hooks/useDarkMode'
 
-const Container = styled.div`
-    max-width: 768px;
-    margin: 0 auto;
-`
-
 const Header = styled.header`
-    background-color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.background};
     padding: 1rem;
     margin: 0 auto;
-    border-bottom-width: 5px;
-    border-bottom-style: solid;
-    border-bottom-color: ${({ theme }) => theme.tertiary};
 `
 
 const HeaderContent = styled.div`
     display: flex;
+    align-items: center;
     justify-content: space-between;
 `
 
@@ -31,16 +25,20 @@ const Wrapper = styled.main`
 `
 
 const Footer = styled.footer`
-    background-color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.background};
     padding: 4rem 1rem;
 `
 
-const SiteTitle = styled.h1`
-    color: white;
-`
+const SiteTitle = styled.h1``
 
 const SiteTitleLink = styled(Link)`
+    color: ${({ theme }) => theme.links};
     text-decoration: none;
+`
+
+const CartAndThemeTray = styled.div`
+    display: flex;
+    justify-content: space-between;
 `
 
 const Layout = ({ children }) => {
@@ -65,19 +63,19 @@ const Layout = ({ children }) => {
                 <Container>
                     <HeaderContent>
                         <SiteTitle>
-                            <SiteTitleLink>{title}</SiteTitleLink>
+                            <SiteTitleLink to="/">{title}</SiteTitleLink>
                         </SiteTitle>
-                        <div>
+                        <CartAndThemeTray>
                             <Cart />
                             <Button onClick={toggleDarkMode}>
                                 {isDarkMode ? '☀️' : '🌛'}
                             </Button>
-                        </div>
+                        </CartAndThemeTray>
                     </HeaderContent>
                 </Container>
             </Header>
             <Wrapper>
-                <Container>{children}</Container>
+                {children}
             </Wrapper>
             <Footer>
                 <Container>Foooooooter</Container>

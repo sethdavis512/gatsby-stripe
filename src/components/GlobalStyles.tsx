@@ -7,23 +7,27 @@ const black = '#1F2D3D'
 const lightBlue = '#85D7FF'
 const blue = '#1FB6FF'
 const darkBlue = '#009EEB'
-const slate = '#3C4858'
+
+const lightGreen = '#29EB7F'
 const green = '#13CE66'
+const darkGreen = '#0F9F4F'
+
+const slate = '#3C4858'
 
 // Themes
 export const lightTheme = {
     primary: darkBlue,
     secondary: lightBlue,
     tertiary: green,
+
     background: white,
-    white,
-    slate
+    foreground: black
 }
 
 export const darkTheme = {
     ...lightTheme,
-    primary: blue,
-    background: black
+    background: black,
+    foreground: white
 }
 
 const GlobalStyles = createGlobalStyle`
@@ -37,6 +41,15 @@ const GlobalStyles = createGlobalStyle`
         margin: 0;
         padding: 0;
         height: 100vh;
+    }
+
+    a {
+        color: ${({ theme }) => theme.foreground};
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
     }
 `
 
