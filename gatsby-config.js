@@ -8,6 +8,7 @@ module.exports = {
         description: `A small e-commerce starter built with Gatsby and Stripe.`,
         author: `@sethdavis512`
     },
+    pathPrefix: `/gatsby-stripe`,
     plugins: [
         `gatsby-plugin-react-helmet`,
         {
