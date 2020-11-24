@@ -1,9 +1,9 @@
 require('dotenv').config({
     path: `.env.${process.env.NODE_ENV}`
-})
+});
 
-const inquirer = require('inquirer')
-const stripe = require('stripe')(process.env.GATSBY_STRIPE_KEY)
+const inquirer = require('inquirer');
+const stripe = require('stripe')(process.env.GATSBY_STRIPE_KEY);
 
 (async () => {
     try {

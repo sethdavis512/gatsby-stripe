@@ -1,9 +1,9 @@
 require('dotenv').config({
     path: `.env.${process.env.NODE_ENV}`
-})
+});
 
 const keyBy = require('lodash/keyBy');
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
 const stripe = require('stripe')(process.env.GATSBY_STRIPE_KEY);
 
 (async () => {
