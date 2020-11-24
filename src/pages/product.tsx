@@ -17,16 +17,16 @@ const Product = ({ pageContext }) => {
     return (
         <Layout>
             <div>
-                {product.images && product.images.length
+                {product && product.images && product.images.length
                     ? product.images.map(url => (
                           <img key={getUniqueId('product-image')} src={url} />
                       ))
                     : 'No images'}
             </div>
             <div>
-                <h1>{product.name}</h1>
-                {product.description && <p>{product.description}</p>}
-                {product.price && (
+                {product && product.name && <h1>{product.name}</h1>}
+                {product && product.description && <p>{product.description}</p>}
+                {product && product.price && (
                     <p>
                         <strong>${product.price / 100}</strong>
                     </p>

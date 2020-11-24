@@ -48,8 +48,8 @@ const Cart = () => {
         const { error } = await stripe.redirectToCheckout({
             lineItems,
             mode: 'payment',
-            successUrl: `${window.location.origin}/success`,
-            cancelUrl: `${window.location.origin}/cancel`
+            successUrl: `${window.location.origin}/gatsby-stripe/success`,
+            cancelUrl: `${window.location.origin}/gatsby-stripe/cancel`
         })
     }
 

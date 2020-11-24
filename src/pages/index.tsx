@@ -29,26 +29,23 @@ const ProductRow = styled.div`
     justify-content: space-between;
 
     @media (min-width: 540px) {
-        flex-direction: row;
+        flex-flow: row wrap;
     }
 `
 
 const ProductCard = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     flex: 1 0 auto;
-    border: 1px solid black;
+    border: 1px solid ${({ theme }) => theme.silver};
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 1rem;
     border-radius: 12px;
-    overflow: hidden;
 
     :not(:last-child) {
         margin-right: 0.75rem;
     }
 
     :hover {
-        background-color: ${({ theme }) => theme.background};
+        background-color: ${({ theme }) => theme.darkSnow};
     }
 
     @media (min-width: 540px) {
@@ -56,42 +53,27 @@ const ProductCard = styled.div`
     }
 `
 
-const ProductCardButton = styled(Button)`
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    color: ${({ theme }) => theme.foreground};
-    background-color: ${({ theme }) => theme.primary};
-    border-left: none;
-    border-top-color: ${({ theme }) => theme.slate};
-    border-top-left-radius: 0;
-    border-right: none;
-    border-top-right-radius: 0;
-    border-bottom: none;
-
-    :hover {
-        border-left: none;
-        border-right: none;
-        border-bottom: none;
-    }
-`
-
 const ProductCardContent = styled.div`
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     text-align: center;
+    padding-bottom: 15px;
 `
 
 const ProductCardLink = styled(Link)`
+    width: 100%;
     padding: 1rem 1rem 0 1rem;
 `
 
 const Title = styled.h1`
-    color: ${({ theme }) => theme.foreground}
+    color: ${({ theme }) => theme.white}
 `
 
 const Subtitle = styled.h3`
-    color: ${({ theme }) => theme.foreground}
+    color: ${({ theme }) => theme.white}
 `
 
 const IndexPage = () => {
@@ -116,8 +98,8 @@ const IndexPage = () => {
                     )}
                     <p>{product.name}</p>
                 </ProductCardLink>
+                <Button onClick={createAddToCart(product)}>Add to cart</Button>
             </ProductCardContent>
-            <ProductCardButton onClick={createAddToCart(product)}>Add to cart</ProductCardButton>
         </ProductCard>
     ))
 

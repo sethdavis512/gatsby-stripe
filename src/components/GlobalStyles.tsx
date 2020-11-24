@@ -2,7 +2,6 @@ import { createGlobalStyle } from 'styled-components'
 
 // Initial colors
 const white = '#ffffff'
-const black = '#1F2D3D'
 
 const lightBlue = '#85D7FF'
 const blue = '#1FB6FF'
@@ -12,7 +11,18 @@ const lightGreen = '#29EB7F'
 const green = '#13CE66'
 const darkGreen = '#0F9F4F'
 
+const snow = '#F9FAFC'
+const darkSnow = '#EFF2F7'
+const extraDarkSnow = '#E5E9F2'
+
+const smoke = '#E0E6ED'
+const darkSmoke = '#D3DCE6'
+const extraDarkSmoke = '#C0CCDA'
+
+const silver = '#8492A6'
 const slate = '#3C4858'
+const steel = '#273444'
+const black = '#1F2D3D'
 
 // Themes
 export const lightTheme = {
@@ -21,7 +31,25 @@ export const lightTheme = {
     tertiary: green,
 
     background: white,
-    foreground: black
+    foreground: black,
+
+    black,
+    blue,
+    darkBlue,
+    darkGreen,
+    darkSmoke,
+    darkSnow,
+    extraDarkSmoke,
+    extraDarkSnow,
+    green,
+    lightBlue,
+    lightGreen,
+    silver,
+    slate,
+    smoke,
+    snow,
+    steel,
+    white
 }
 
 export const darkTheme = {
@@ -40,7 +68,6 @@ const GlobalStyles = createGlobalStyle`
     body {
         margin: 0;
         padding: 0;
-        height: 100vh;
     }
 
     a {

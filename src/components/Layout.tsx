@@ -8,10 +8,17 @@ import Cart from './Cart'
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
 import useDarkMode from '../hooks/useDarkMode'
 
+const SiteWrapper = styled.div`
+    display: flex;
+    min-height: 100vh;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+`
+
 const Header = styled.header`
-    background-color: ${({ theme }) => theme.background};
     padding: 1rem;
     margin: 0 auto;
+    width: 100%;
 `
 
 const HeaderContent = styled.div`
@@ -21,11 +28,12 @@ const HeaderContent = styled.div`
 `
 
 const Wrapper = styled.main`
-    background-color: ${({ theme }) => theme.background};
+    flex: 1 0 auto;
 `
 
 const Footer = styled.footer`
-    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.white};
+    background-color: ${({ theme }) => theme.black};
     padding: 4rem 1rem;
 `
 
@@ -59,27 +67,29 @@ const Layout = ({ children }) => {
     return (
         <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
             <GlobalStyles />
-            <Header>
-                <Container>
-                    <HeaderContent>
-                        <SiteTitle>
-                            <SiteTitleLink to="/">{title}</SiteTitleLink>
-                        </SiteTitle>
-                        <CartAndThemeTray>
-                            <Cart />
-                            <Button onClick={toggleDarkMode}>
-                                {isDarkMode ? '☀️' : '🌛'}
-                            </Button>
-                        </CartAndThemeTray>
-                    </HeaderContent>
-                </Container>
-            </Header>
-            <Wrapper>
-                {children}
-            </Wrapper>
-            <Footer>
-                <Container>Foooooooter</Container>
-            </Footer>
+            <SiteWrapper>
+                <Header>
+                    <Container>
+                        <HeaderContent>
+                            <SiteTitle>
+                                <SiteTitleLink to="/">{title}</SiteTitleLink>
+                            </SiteTitle>
+                            <CartAndThemeTray>
+                                <Cart />
+                                <Button onClick={toggleDarkMode}>
+                                    {isDarkMode ? '☀️' : '🌛'}
+                                </Button>
+                            </CartAndThemeTray>
+                        </HeaderContent>
+                    </Container>
+                </Header>
+                <Wrapper>
+                    {children}
+                </Wrapper>
+                <Footer>
+                    <Container>Foooooooter</Container>
+                </Footer>
+            </SiteWrapper>
         </ThemeProvider>
     )
 }
