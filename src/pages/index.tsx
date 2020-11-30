@@ -20,7 +20,7 @@ const HeroSection = styled(Section)`
     padding: 3rem 1rem;
     margin-bottom: 1rem;
     background-color: ${({ theme }) => theme.primary};
-    color: ${({ theme }) => theme.white};
+    color: white;
 `
 
 const ProductRow = styled.div`
@@ -28,28 +28,28 @@ const ProductRow = styled.div`
     flex-direction: column;
     justify-content: space-between;
 
-    @media (min-width: 540px) {
+    @media (min-width: 768px) {
         flex-flow: row wrap;
+        margin: 0 -1rem;
     }
 `
 
 const ProductCard = styled.div`
-    flex: 1 0 auto;
-    border: 1px solid ${({ theme }) => theme.silver};
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    flex: 0 0 48%;
+    border: 1px solid ${({ theme }) => theme.border};
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    margin-left: 1%;
     margin-bottom: 1rem;
     border-radius: 12px;
 
-    :not(:last-child) {
-        margin-right: 0.75rem;
-    }
-
     :hover {
-        background-color: ${({ theme }) => theme.darkSnow};
+        background-color: ${({ theme }) => theme.hover};
     }
 
-    @media (min-width: 540px) {
-        margin-bottom: 0;
+    @media (min-width: 768px) {
+        flex: 0 0 31%;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
     }
 `
 
@@ -68,13 +68,9 @@ const ProductCardLink = styled(Link)`
     padding: 1rem 1rem 0 1rem;
 `
 
-const Title = styled.h1`
-    color: ${({ theme }) => theme.white}
-`
+const Title = styled.h1``
 
-const Subtitle = styled.h3`
-    color: ${({ theme }) => theme.white}
-`
+const Subtitle = styled.h3``
 
 const IndexPage = () => {
     const [products] = useProducts()

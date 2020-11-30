@@ -31,31 +31,18 @@ export const lightTheme = {
     tertiary: green,
 
     background: white,
+    border: extraDarkSmoke,
+    disabled: silver,
     foreground: black,
-
-    black,
-    blue,
-    darkBlue,
-    darkGreen,
-    darkSmoke,
-    darkSnow,
-    extraDarkSmoke,
-    extraDarkSnow,
-    green,
-    lightBlue,
-    lightGreen,
-    silver,
-    slate,
-    smoke,
-    snow,
-    steel,
-    white
+    hover: snow
 }
 
 export const darkTheme = {
     ...lightTheme,
-    background: black,
-    foreground: white
+    background: steel,
+    border: black,
+    foreground: white,
+    hover: slate
 }
 
 const GlobalStyles = createGlobalStyle`
@@ -68,15 +55,16 @@ const GlobalStyles = createGlobalStyle`
     body {
         margin: 0;
         padding: 0;
+        background-color: ${({ theme }) => theme.background};
     }
 
     a {
         color: ${({ theme }) => theme.foreground};
         text-decoration: none;
-    }
 
-    a:hover {
-        text-decoration: underline;
+        :hover {
+            text-decoration: underline;
+        }
     }
 `
 

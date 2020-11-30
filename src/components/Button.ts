@@ -3,19 +3,20 @@ import styled from 'styled-components'
 const Button = styled.button`
     background-color: ${({ theme }) => theme.primary};
     border-radius: 12px;
-    border: 2px solid ${({ theme }) => theme.primary};
+    border: 1px solid ${({ theme }) => theme.secondary};
     color: white;
     font-size: 16px;
     padding: 0.5rem 1rem;
 
     :hover {
         background-color: ${({ theme }) => theme.secondary};
-        border: 2px solid ${({ theme }) => theme.primary};
+        border-color: ${({ theme }) => theme.primary};
     }
 
     :disabled {
-        background-color: ${({ theme }) => theme.primary};
-        border: 2px solid ${({ theme }) => theme.primary};
+        cursor: not-allowed;
+        background-color: ${({ theme }) => theme.disabled};
+        border-color: ${({ theme }) => theme.secondary};
     }
 `
 

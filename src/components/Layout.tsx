@@ -32,16 +32,22 @@ const Wrapper = styled.main`
 `
 
 const Footer = styled.footer`
-    color: ${({ theme }) => theme.white};
-    background-color: ${({ theme }) => theme.black};
+    color: ${({ theme }) => theme.foreground};
+    background-color: ${({ theme }) => theme.background};
     padding: 4rem 1rem;
 `
 
-const SiteTitle = styled.h1``
+const SiteTitle = styled.h1`
+    color: ${({ theme }) => theme.primary}
+`
 
 const SiteTitleLink = styled(Link)`
-    color: ${({ theme }) => theme.links};
+    color: ${({ theme }) => theme.primary};
     text-decoration: none;
+
+    :hover {
+        text-decoration: none;
+    }
 `
 
 const CartAndThemeTray = styled.div`
