@@ -6,7 +6,7 @@ const Button = styled.button`
     border: 1px solid ${({ theme }) => theme.secondary};
     color: white;
     font-size: 16px;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
 
     :hover {
         background-color: ${({ theme }) => theme.secondary};

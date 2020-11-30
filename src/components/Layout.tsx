@@ -32,13 +32,13 @@ const Wrapper = styled.main`
 `
 
 const Footer = styled.footer`
-    color: ${({ theme }) => theme.foreground};
-    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.footerForeground};
+    background-color: ${({ theme }) => theme.footerBackground};
     padding: 4rem 1rem;
 `
 
 const SiteTitle = styled.h1`
-    color: ${({ theme }) => theme.primary}
+    color: ${({ theme }) => theme.primary};
 `
 
 const SiteTitleLink = styled(Link)`
@@ -62,6 +62,7 @@ const Layout = ({ children }) => {
                 siteMetadata {
                     title
                 }
+                pathPrefix
             }
         }
     `)
@@ -69,6 +70,7 @@ const Layout = ({ children }) => {
     const [isDarkMode, setDarkMode] = useDarkMode()
     const toggleDarkMode = () => setDarkMode(!isDarkMode)
     const title = data.site.siteMetadata?.title || `Title`
+    const pathPrefix = data.site?.pathPrefix
 
     return (
         <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
@@ -81,7 +83,7 @@ const Layout = ({ children }) => {
                                 <SiteTitleLink to="/">{title}</SiteTitleLink>
                             </SiteTitle>
                             <CartAndThemeTray>
-                                <Cart />
+                                <Cart meta={{ pathPrefix }} />
                                 <Button onClick={toggleDarkMode}>
                                     {isDarkMode ? '☀️' : '🌛'}
                                 </Button>

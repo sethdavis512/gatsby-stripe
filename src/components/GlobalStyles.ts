@@ -30,10 +30,15 @@ export const lightTheme = {
     secondary: lightBlue,
     tertiary: green,
 
+    // Layout colors
     background: white,
+    foreground: black,
+    footerForeground: white,
+    footerBackground: steel,
+
+    // Component colors
     border: extraDarkSmoke,
     disabled: silver,
-    foreground: black,
     hover: snow
 }
 

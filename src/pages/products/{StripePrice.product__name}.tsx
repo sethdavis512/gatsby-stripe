@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
-import Button from '../components/Button'
-import Container from '../components/Container'
-import Layout from '../components/Layout'
-import useCart from '../hooks/useCart'
+import Button from '../../components/Button'
+import Container from '../../components/Container'
+import Layout from '../../components/Layout'
+import useCart from '../../hooks/useCart'
 
-import { getUniqueId } from '../utils'
+import { getUniqueId } from '../../utils'
 
 const ProductRow = styled.div`
     display: flex;
@@ -47,8 +48,8 @@ const AddToCartButton = styled(Button)`
     }
 `
 
-const Product = ({ pageContext }) => {
-    const { product } = pageContext
+const Product = ({ data }) => {
+    const { product } = data.stripePrice
     const [quantity, setQuantity] = useState(0)
     const createHandleSetQuantity = isDecrement => () =>
         setQuantity(isDecrement ? quantity - 1 : quantity + 1)
@@ -108,5 +109,20 @@ const Product = ({ pageContext }) => {
         </Layout>
     )
 }
+
+export const query = graphql`
+  query ($id: String) {
+    stripePrice(id: { eq: $id }) {
+      id
+      unit_amount
+      currency
+      product {
+        name
+        description
+        images
+      }
+    }
+  }
+`
 
 export default Product

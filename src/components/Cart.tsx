@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import kebabCase from 'lodash/kebabCase'
 import styled from 'styled-components'
 import { loadStripe } from '@stripe/stripe-js'
 
 import useCart from '../hooks/useCart'
 import Button from './Button'
+import CartList from './CartList'
 
 const CartContainer = styled.div`
     margin-right: 0.5rem;
@@ -32,26 +32,6 @@ const CartWrapper = styled.div`
     }
 `
 
-const CartList = styled.ul`
-    list-style-type: none;
-    color: ${({ theme }) => theme.foreground};
-    margin: 0;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border-radius: 12px;
-`
-
-const CartListItem = styled.li`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-`
-
-const CartListItemButton = styled(Button)`
-    padding: 0.5rem;
-    border-radius: 0px;
-`
-
 const CartButtonTray = styled.div`
     display: flex;
     justify-content: space-between;
@@ -59,20 +39,8 @@ const CartButtonTray = styled.div`
 
 const stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
 
-const Cart = () => {
+const Cart = ({ meta }) => {
     const [cart, cartActions] = useCart()
-
-    const createHandleAddItem = product => () => {
-        cartActions.addToCart(product, 1)
-    }
-
-    const createHandleRemoveItem = id => () => {
-        cartActions.removeItem(id, 1)
-    }
-
-    const createHandleRemoveLineItem = id => () => {
-        cartActions.removeLineItem(id)
-    }
 
     const handleCheckoutClick = async () => {
         const stripe = await stripePromise
@@ -82,50 +50,27 @@ const Cart = () => {
             quantity: item.quantity
         }))
 
+        const urlBase = `${window.location.origin}${meta.pathPrefix}`
+        const successUrl = `${urlBase}/success`
+        const cancelUrl = `${urlBase}/cancel`;
+
         const { error } = await stripe.redirectToCheckout({
             lineItems,
             mode: 'payment',
-            successUrl: `${window.location.origin}/gatsby-stripe/success`,
-            cancelUrl: `${window.location.origin}/gatsby-stripe/cancel`
+            successUrl,
+            cancelUrl
         })
     }
 
     const [showCart, setShowCart] = useState(false)
     const handleShowCart = () => setShowCart(!showCart)
 
-    const mappedCartItems = cart.items.map(item => (
-        <CartListItem key={kebabCase(item.name)}>
-            <div>
-                {item.name} - {item.quantity}
-            </div>
-            <div>
-                <CartListItemButton onClick={createHandleRemoveItem(item.id)}>
-                    -
-                </CartListItemButton>
-                <CartListItemButton onClick={createHandleAddItem(item)}>
-                    +
-                </CartListItemButton>
-                <CartListItemButton
-                    onClick={createHandleRemoveLineItem(item.id)}
-                >
-                    X
-                </CartListItemButton>
-            </div>
-        </CartListItem>
-    ))
-
     return (
         <CartContainer>
             <Button onClick={handleShowCart}>🛒 {cart.totalQuantity}</Button>
             {showCart && (
                 <CartWrapper>
-                    <CartList>
-                        {mappedCartItems.length ? (
-                            mappedCartItems
-                        ) : (
-                            <p>No items in cart.</p>
-                        )}
-                    </CartList>
+                    <CartList items={cart.items} />
                     <CartButtonTray>
                         <Button onClick={cartActions.clearCart}>Clear cart</Button>
                         <Button
