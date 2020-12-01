@@ -1,6 +1,8 @@
 import React from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import styled, { ThemeProvider } from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 
 import Button from './Button'
 import Container from './Container'
@@ -85,15 +87,17 @@ const Layout = ({ children }) => {
                             <CartAndThemeTray>
                                 <Cart meta={{ pathPrefix }} />
                                 <Button onClick={toggleDarkMode}>
-                                    {isDarkMode ? '☀️' : '🌛'}
+                                    {isDarkMode ? (
+                                        <FontAwesomeIcon icon={faSun} />
+                                    ) : (
+                                        <FontAwesomeIcon icon={faMoon} />
+                                    )}
                                 </Button>
                             </CartAndThemeTray>
                         </HeaderContent>
                     </Container>
                 </Header>
-                <Wrapper>
-                    {children}
-                </Wrapper>
+                <Wrapper>{children}</Wrapper>
                 <Footer>
                     <Container>Foooooooter</Container>
                 </Footer>

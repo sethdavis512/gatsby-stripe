@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 import Button from '../../components/Button'
 import Container from '../../components/Container'
@@ -79,29 +81,29 @@ const Product = ({ data }) => {
                             <p>{product.description}</p>
                         )}
                         {product && product.price && (
-                            <Price>
-                                ${product.price / 100}
-                            </Price>
+                            <Price>${product.price / 100}</Price>
                         )}
                         <CartControls>
-                        <QuantityControls>
-                            <Button
-                                onClick={createHandleSetQuantity(true)}
+                            <QuantityControls>
+                                <Button
+                                    onClick={createHandleSetQuantity(true)}
+                                    disabled={quantity === 0}
+                                >
+                                    <FontAwesomeIcon icon={faMinus} />
+                                </Button>
+                                <Quantity>{quantity}</Quantity>
+                                <Button
+                                    onClick={createHandleSetQuantity(false)}
+                                >
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </Button>
+                            </QuantityControls>
+                            <AddToCartButton
+                                onClick={createHandleAddToCart(product)}
                                 disabled={quantity === 0}
                             >
-                                -
-                            </Button>
-                            <Quantity>{quantity}</Quantity>
-                            <Button onClick={createHandleSetQuantity(false)}>
-                                +
-                            </Button>
-                        </QuantityControls>
-                        <AddToCartButton
-                            onClick={createHandleAddToCart(product)}
-                            disabled={quantity === 0}
-                        >
-                            Add {quantity} to cart
-                        </AddToCartButton>
+                                Add {quantity} to cart
+                            </AddToCartButton>
                         </CartControls>
                     </ProductDetails>
                 </ProductRow>
@@ -111,18 +113,18 @@ const Product = ({ data }) => {
 }
 
 export const query = graphql`
-  query ($id: String) {
-    stripePrice(id: { eq: $id }) {
-      id
-      unit_amount
-      currency
-      product {
-        name
-        description
-        images
-      }
+    query($id: String) {
+        stripePrice(id: { eq: $id }) {
+            id
+            unit_amount
+            currency
+            product {
+                name
+                description
+                images
+            }
+        }
     }
-  }
 `
 
 export default Product

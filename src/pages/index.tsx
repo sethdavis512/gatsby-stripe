@@ -38,8 +38,8 @@ const IndexPage = ({ data }) => {
             <SEO title="Home" />
             <HeroSection>
                 <Container>
-                    <h1>Store</h1>
-                    <h3>A very interesting tagline</h3>
+                    <h1>Welcome</h1>
+                    <h3>Get your soccer gear!</h3>
                 </Container>
             </HeroSection>
             <Section>

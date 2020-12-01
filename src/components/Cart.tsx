@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { loadStripe } from '@stripe/stripe-js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 import useCart from '../hooks/useCart'
 import Button from './Button'
@@ -67,7 +69,10 @@ const Cart = ({ meta }) => {
 
     return (
         <CartContainer>
-            <Button onClick={handleShowCart}>🛒 {cart.totalQuantity}</Button>
+            <Button onClick={handleShowCart}>
+                <FontAwesomeIcon icon={faShoppingCart} />
+                {cart.totalQuantity}
+            </Button>
             {showCart && (
                 <CartWrapper>
                     <CartList items={cart.items} />

@@ -8,11 +8,12 @@ export const getProducts = data => {
     const edges = get(data, 'allStripePrice.edges', [])
 
     return edges.reduce((products, currentEdge) => {
-        const { product, unit_ammount: price } = currentEdge.node
+        const { id, product, unit_ammount: price } = currentEdge.node
         const { active, description, images, name } = product
 
         if (active) {
             products.push({
+                id,
                 description,
                 images,
                 name,

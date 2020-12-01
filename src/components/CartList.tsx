@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 import Button from './Button'
 
@@ -53,17 +55,17 @@ const CartList = ({ items }) => {
                             <CartListItemButton
                                 onClick={createHandleRemoveItem(item.id)}
                             >
-                                -
+                                <FontAwesomeIcon icon={faMinus} />
                             </CartListItemButton>
                             <CartListItemButton
                                 onClick={createHandleAddItem(item)}
                             >
-                                +
+                                <FontAwesomeIcon icon={faPlus} />
                             </CartListItemButton>
                             <CartListItemButton
                                 onClick={createHandleRemoveLineItem(item.id)}
                             >
-                                X
+                                <FontAwesomeIcon icon={faTimes} />
                             </CartListItemButton>
                         </div>
                     </CartListItem>

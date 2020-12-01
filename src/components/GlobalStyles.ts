@@ -26,8 +26,8 @@ const black = '#1F2D3D'
 
 // Themes
 export const lightTheme = {
-    primary: darkBlue,
-    secondary: lightBlue,
+    primary: darkGreen,
+    secondary: lightGreen,
     tertiary: green,
 
     // Layout colors
@@ -44,9 +44,14 @@ export const lightTheme = {
 
 export const darkTheme = {
     ...lightTheme,
+
+    // Layout colors
     background: steel,
-    border: black,
     foreground: white,
+    footerBackground: black,
+
+    // Component colors
+    border: black,
     hover: slate
 }
 
