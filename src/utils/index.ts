@@ -4,7 +4,7 @@ import kebabCase from 'lodash/kebabCase'
 export const getUniqueId = prefix =>
     `${kebabCase(prefix)}-${Math.random().toString(36).substr(2, 9)}`
 
-export const getProducts = data => {
+export const getProducts = (data: IndexPageProps): ProductData => {
     const edges = get(data, 'allStripePrice.edges', [])
 
     return edges.reduce((products, currentEdge) => {
@@ -23,4 +23,17 @@ export const getProducts = data => {
 
         return products
     }, [])
+}
+
+export const getProduct = (data) => {
+    const { id, product, unit_amount } = data.stripePrice;
+    const { description, images, name } = product;
+
+    return {
+        id,
+        price: unit_amount,
+        name,
+        description,
+        images
+    }
 }

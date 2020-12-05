@@ -1,10 +1,20 @@
 import React from 'react'
+import { Link } from 'gatsby'
+import Container from '../components/Container'
 import Layout from '../components/Layout'
 
 const Cancel = () => {
     return (
         <Layout>
-            <h1>Much Cancel!</h1>
+            <Container>
+                <h1>Cancelled.</h1>
+                <p>
+                    You have not been charged.
+                </p>
+                <Link to="/">
+                    Return to store
+                </Link>
+            </Container>
         </Layout>
     )
 }

@@ -7,6 +7,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import useCart from '../hooks/useCart'
 import Button from './Button'
 import CartList from './CartList'
+import useSiteMetadata from '../hooks/useSiteMetaData'
 
 const CartContainer = styled.div`
     margin-right: 0.5rem;
@@ -41,8 +42,9 @@ const CartButtonTray = styled.div`
 
 const stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
 
-const Cart = ({ meta }) => {
+const Cart = () => {
     const [cart, cartActions] = useCart()
+    const { pathPrefix } = useSiteMetadata();
 
     const handleCheckoutClick = async () => {
         const stripe = await stripePromise
@@ -52,7 +54,7 @@ const Cart = ({ meta }) => {
             quantity: item.quantity
         }))
 
-        const urlBase = `${window.location.origin}${meta.pathPrefix}`
+        const urlBase = `${window.location.origin}${pathPrefix}`
         const successUrl = `${urlBase}/success`
         const cancelUrl = `${urlBase}/cancel`;
 

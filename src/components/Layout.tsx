@@ -9,6 +9,7 @@ import Container from './Container'
 import Cart from './Cart'
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
 import useDarkMode from '../hooks/useDarkMode'
+import useSiteMetadata from '../hooks/useSiteMetaData'
 
 const SiteWrapper = styled.div`
     display: flex;
@@ -58,21 +59,10 @@ const CartAndThemeTray = styled.div`
 `
 
 const Layout = ({ children }) => {
-    const data = useStaticQuery(graphql`
-        query SiteTitleQuery {
-            site {
-                siteMetadata {
-                    title
-                }
-                pathPrefix
-            }
-        }
-    `)
+    const { siteTitle } = useSiteMetadata();
 
     const [isDarkMode, setDarkMode] = useDarkMode()
     const toggleDarkMode = () => setDarkMode(!isDarkMode)
-    const title = data.site.siteMetadata?.title || `Title`
-    const pathPrefix = data.site?.pathPrefix
 
     return (
         <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
@@ -82,10 +72,10 @@ const Layout = ({ children }) => {
                     <Container>
                         <HeaderContent>
                             <SiteTitle>
-                                <SiteTitleLink to="/">{title}</SiteTitleLink>
+                                <SiteTitleLink to="/">{siteTitle}</SiteTitleLink>
                             </SiteTitle>
                             <CartAndThemeTray>
-                                <Cart meta={{ pathPrefix }} />
+                                <Cart />
                                 <Button onClick={toggleDarkMode}>
                                     {isDarkMode ? (
                                         <FontAwesomeIcon icon={faSun} />

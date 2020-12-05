@@ -3,11 +3,6 @@ import React, { createContext, ReactNode, useReducer, useEffect } from 'react'
 import { cartReducer } from './cartReducer'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
-interface CartProviderProps {
-    children: ReactNode
-    providerValue?: any
-}
-
 export const CartContext = createContext({
     state: {
         items: []

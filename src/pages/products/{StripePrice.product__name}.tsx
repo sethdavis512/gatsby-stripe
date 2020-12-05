@@ -9,7 +9,7 @@ import Container from '../../components/Container'
 import Layout from '../../components/Layout'
 import useCart from '../../hooks/useCart'
 
-import { getUniqueId } from '../../utils'
+import { getProduct, getUniqueId } from '../../utils'
 
 const ProductRow = styled.div`
     display: flex;
@@ -51,7 +51,7 @@ const AddToCartButton = styled(Button)`
 `
 
 const Product = ({ data }) => {
-    const { product } = data.stripePrice
+    const product = getProduct(data)
     const [quantity, setQuantity] = useState(0)
     const createHandleSetQuantity = isDecrement => () =>
         setQuantity(isDecrement ? quantity - 1 : quantity + 1)
@@ -112,6 +112,8 @@ const Product = ({ data }) => {
     )
 }
 
+// Page query required since we need to pass a variable
+// https://www.gatsbyjs.com/docs/static-query/#how-staticquery-differs-from-page-query
 export const query = graphql`
     query($id: String) {
         stripePrice(id: { eq: $id }) {

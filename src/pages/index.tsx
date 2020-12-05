@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
 
 import Container from '../components/Container'
@@ -30,7 +30,26 @@ const ProductRow = styled.div`
     }
 `
 
-const IndexPage = ({ data }) => {
+const IndexPage = () => {
+    const data = useStaticQuery(graphql`
+        query {
+            allStripePrice {
+                edges {
+                    node {
+                        id
+                        unit_amount
+                        currency
+                        product {
+                            active
+                            name
+                            description
+                            images
+                        }
+                    }
+                }
+            }
+        }
+    `)
     const products = getProducts(data)
 
     return (
@@ -52,25 +71,5 @@ const IndexPage = ({ data }) => {
         </Layout>
     )
 }
-
-export const query = graphql`
-    query {
-        allStripePrice {
-            edges {
-                node {
-                    id
-                    unit_amount
-                    currency
-                    product {
-                        active
-                        name
-                        description
-                        images
-                    }
-                }
-            }
-        }
-    }
-`
 
 export default IndexPage
