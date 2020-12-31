@@ -26,6 +26,10 @@ export const getProducts = (data: IndexPageProps): ProductData => {
 }
 
 export const getProduct = (data) => {
+    if (!data) {
+        return null
+    }
+
     const { id, product, unit_amount } = data.stripePrice;
     const { description, images, name } = product;
 
