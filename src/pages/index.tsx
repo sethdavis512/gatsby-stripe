@@ -22,7 +22,6 @@ const HeroSection = styled(Section)`
 const ProductRow = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 
     @media (min-width: 768px) {
         flex-flow: row wrap;
