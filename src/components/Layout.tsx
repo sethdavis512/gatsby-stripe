@@ -1,5 +1,5 @@
-import React from 'react'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import React, { ReactNode } from 'react'
+import { Link } from 'gatsby'
 import styled, { ThemeProvider } from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
@@ -10,6 +10,10 @@ import Cart from './Cart'
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
 import useDarkMode from '../hooks/useDarkMode'
 import useSiteMetadata from '../hooks/useSiteMetaData'
+
+interface LayoutProps {
+    children: ReactNode
+}
 
 const SiteWrapper = styled.div`
     display: flex;
@@ -58,7 +62,7 @@ const CartAndThemeTray = styled.div`
     justify-content: space-between;
 `
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: LayoutProps) => {
     const { siteTitle } = useSiteMetadata();
 
     const [isDarkMode, setDarkMode] = useDarkMode()
