@@ -26,6 +26,7 @@ const black = '#1F2D3D'
 
 // Themes
 export const lightTheme = {
+    // General palette
     primary: darkGreen,
     secondary: lightGreen,
     tertiary: green,
@@ -75,6 +76,11 @@ const GlobalStyles = createGlobalStyle`
         :hover {
             text-decoration: underline;
         }
+    }
+
+    img {
+        width: 100%;
+        max-width: 100%;
     }
 `
 
