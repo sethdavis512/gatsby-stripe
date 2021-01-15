@@ -1,10 +1,10 @@
 import get from 'lodash/get'
 import kebabCase from 'lodash/kebabCase'
 
-export const getUniqueId = prefix =>
+export const getUniqueId = (prefix: string): string =>
     `${kebabCase(prefix)}-${Math.random().toString(36).substr(2, 9)}`
 
-export const getProducts = (data: IndexPageProps): ProductData => {
+export const getProducts = (data: IndexPageProps): Product => {
     const edges = get(data, 'allStripePrice.edges', [])
 
     return edges.reduce((products, currentEdge) => {
