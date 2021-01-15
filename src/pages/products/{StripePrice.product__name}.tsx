@@ -11,17 +11,29 @@ import useCart from '../../hooks/useCart'
 
 import { getProduct, getUniqueId } from '../../utils'
 
+interface ProductProps {
+    data: any
+}
+
 const ProductRow = styled.div`
-    display: flex;
-    margin: 0 auto;
+    @media (min-width: 768px) {
+        display: flex;
+        margin: 0 auto;
+    }
 `
 
 const ProductImage = styled.div`
-    flex: 1 0 auto;
+    @media (min-width: 768px) {
+        flex: 0 0 40%;
+    }
 `
 
 const ProductDetails = styled.div`
-    flex: 1 0 auto;
+    padding: 0 1rem 1rem;
+
+    @media (min-width: 768px) {
+        flex: 0 0 60%;
+    }
 `
 
 const CartControls = styled.div``
@@ -50,14 +62,14 @@ const AddToCartButton = styled(Button)`
     }
 `
 
-const Product = ({ data }) => {
+const Product = ({ data }: ProductProps) => {
     const product = getProduct(data)
     const [quantity, setQuantity] = useState(0)
-    const createHandleSetQuantity = isDecrement => () =>
+    const createHandleSetQuantity = (isDecrement: boolean) => () =>
         setQuantity(isDecrement ? quantity - 1 : quantity + 1)
 
     const [, cartActions] = useCart()
-    const createHandleAddToCart = product => () =>
+    const createHandleAddToCart = (product: any) => () =>
         cartActions.addToCart(product, quantity)
 
     return (
@@ -66,22 +78,25 @@ const Product = ({ data }) => {
                 <ProductRow>
                     <ProductImage>
                         {product && product.images && product.images.length
-                            ? product.images.map(url => (
+                            ? product.images.map((url: string) => (
                                   <img
                                       key={getUniqueId('product-image')}
                                       src={url}
-                                      width="100"
                                   />
                               ))
                             : 'No images'}
                     </ProductImage>
                     <ProductDetails>
-                        {product && product.name && <h1>{product.name}</h1>}
-                        {product && product.description && (
-                            <p>{product.description}</p>
-                        )}
-                        {product && product.price && (
-                            <Price>${product.price / 100}</Price>
+                        {product && (
+                            <>
+                                {product.name && <h1>{product.name}</h1>}
+                                {product.description && (
+                                    <p>{product.description}</p>
+                                )}
+                                {product.price && (
+                                    <Price>${product.price / 100}</Price>
+                                )}
+                            </>
                         )}
                         <CartControls>
                             <QuantityControls>
