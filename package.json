@@ -1,7 +1,7 @@
 {
   "name": "gatsby-stripe",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "A static e-commerce using Gatsby and Stripe",
   "version": "0.1.0",
   "author": "Seth Davis <sethdavis512@gmail.com>",
   "dependencies": {
