@@ -21,11 +21,18 @@ const CartListItem = styled.li`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 11px;
+
+    :not(:last-child) {
+        border-bottom: 1px solid ${({ theme }) => theme.primary};
+    }
 `
 
 const CartListItemButton = styled(Button)`
     padding: 0.5rem;
-    border-radius: 0px;
+    border-radius: 4px;
+    margin-right: 4px;
 `
 
 const CartList = ({ items }) => {

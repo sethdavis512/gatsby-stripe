@@ -10,18 +10,36 @@ import Cart from './Cart'
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
 import useDarkMode from '../hooks/useDarkMode'
 import useSiteMetadata from '../hooks/useSiteMetaData'
+import useCart from '../hooks/useCart'
 
 interface LayoutProps {
     children: ReactNode
 }
 
+// Outermost element
 const SiteWrapper = styled.div`
     display: flex;
-    min-height: 100vh;
-    flex-flow: column nowrap;
-    justify-content: space-between;
+    flex-flow: column-reverse nowrap;
+
+    @media (min-width: 768px) {
+        height: 100vh;
+        flex-flow: row wrap;
+    }
 `
 
+// Inside Site Wrapper
+const MainContent = styled.div`
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+`
+
+const SidebarContent = styled.aside`
+    border-left: 1px solid grey;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+`
+
+// Inside Main Content
 const Header = styled.header`
     padding: 1rem;
     margin: 0 auto;
@@ -34,7 +52,7 @@ const HeaderContent = styled.div`
     justify-content: space-between;
 `
 
-const Wrapper = styled.main`
+const Main = styled.main`
     flex: 1 0 auto;
 `
 
@@ -57,29 +75,27 @@ const SiteTitleLink = styled(Link)`
     }
 `
 
-const CartAndThemeTray = styled.div`
-    display: flex;
-    justify-content: space-between;
-`
-
 const Layout = ({ children }: LayoutProps) => {
-    const { siteTitle } = useSiteMetadata();
+    const { siteTitle } = useSiteMetadata()
 
     const [isDarkMode, setDarkMode] = useDarkMode()
     const toggleDarkMode = () => setDarkMode(!isDarkMode)
+
+    const [cart] = useCart()
 
     return (
         <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
             <GlobalStyles />
             <SiteWrapper>
-                <Header>
-                    <Container>
-                        <HeaderContent>
-                            <SiteTitle>
-                                <SiteTitleLink to="/">{siteTitle}</SiteTitleLink>
-                            </SiteTitle>
-                            <CartAndThemeTray>
-                                <Cart />
+                <MainContent>
+                    <Header>
+                        <Container>
+                            <HeaderContent>
+                                <SiteTitle>
+                                    <SiteTitleLink to="/">
+                                        {siteTitle}
+                                    </SiteTitleLink>
+                                </SiteTitle>
                                 <Button onClick={toggleDarkMode}>
                                     {isDarkMode ? (
                                         <FontAwesomeIcon icon={faSun} />
@@ -87,14 +103,21 @@ const Layout = ({ children }: LayoutProps) => {
                                         <FontAwesomeIcon icon={faMoon} />
                                     )}
                                 </Button>
-                            </CartAndThemeTray>
-                        </HeaderContent>
-                    </Container>
-                </Header>
-                <Wrapper>{children}</Wrapper>
-                <Footer>
-                    <Container>Foooooooter</Container>
-                </Footer>
+                            </HeaderContent>
+                        </Container>
+                    </Header>
+                    <Main>
+                        {children}
+                    </Main>
+                    <Footer>
+                        <Container>Foooooooter</Container>
+                    </Footer>
+                </MainContent>
+                {cart.hasItems && (
+                    <SidebarContent>
+                        <Cart />
+                    </SidebarContent>
+                )}
             </SiteWrapper>
         </ThemeProvider>
     )

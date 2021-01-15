@@ -11,7 +11,8 @@ import useSiteMetadata from '../hooks/useSiteMetaData'
 
 const CartContainer = styled.div`
     margin-right: 0.5rem;
-    
+    padding: 1rem;
+
     @media (min-width: 768px) {
         position: relative;
     }
@@ -44,7 +45,7 @@ const stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
 
 const Cart = () => {
     const [cart, cartActions] = useCart()
-    const { pathPrefix } = useSiteMetadata();
+    const { pathPrefix } = useSiteMetadata()
 
     const handleCheckoutClick = async () => {
         const stripe = await stripePromise
@@ -56,7 +57,7 @@ const Cart = () => {
 
         const urlBase = `${window.location.origin}${pathPrefix}`
         const successUrl = `${urlBase}/success`
-        const cancelUrl = `${urlBase}/cancel`;
+        const cancelUrl = `${urlBase}/cancel`
 
         const { error } = await stripe.redirectToCheckout({
             lineItems,
@@ -66,29 +67,18 @@ const Cart = () => {
         })
     }
 
-    const [showCart, setShowCart] = useState(false)
-    const handleShowCart = () => setShowCart(!showCart)
-
     return (
         <CartContainer>
-            <Button onClick={handleShowCart}>
-                <FontAwesomeIcon icon={faShoppingCart} />
-                {cart.totalQuantity}
-            </Button>
-            {showCart && (
-                <CartWrapper>
-                    <CartList items={cart.items} />
-                    <CartButtonTray>
-                        <Button onClick={cartActions.clearCart}>Clear cart</Button>
-                        <Button
-                            disabled={!cart.hasItems}
-                            onClick={handleCheckoutClick}
-                        >
-                            Checkout
-                        </Button>
-                    </CartButtonTray>
-                </CartWrapper>
-            )}
+            <h3>
+                Cart
+            </h3>
+            <CartList items={cart.items} />
+            <CartButtonTray>
+                <Button onClick={cartActions.clearCart}>Clear cart</Button>
+                <Button disabled={!cart.hasItems} onClick={handleCheckoutClick}>
+                    Checkout
+                </Button>
+            </CartButtonTray>
         </CartContainer>
     )
 }
