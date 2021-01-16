@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { loadStripe } from '@stripe/stripe-js'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 import useCart from '../hooks/useCart'
 import Button from './Button'
@@ -12,27 +10,13 @@ import useSiteMetadata from '../hooks/useSiteMetaData'
 const CartContainer = styled.div`
     margin-right: 0.5rem;
     padding: 1rem;
+    height: 100vh;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 
     @media (min-width: 768px) {
         position: relative;
-    }
-`
-
-const CartWrapper = styled.div`
-    position: absolute;
-    left: 0;
-    right: 0;
-
-    background-color: ${({ theme }) => theme.background};
-    border: 1px solid ${({ theme }) => theme.primary};
-    margin-top: 0.5rem;
-    padding: 1rem;
-
-    @media (min-width: 768px) {
-        left: initial;
-        right: initial;
-        border-radius: 12px;
-        right: 0;
     }
 `
 
