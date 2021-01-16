@@ -57,14 +57,11 @@ const Main = styled.main`
 `
 
 const Footer = styled.footer`
-    color: ${({ theme }) => theme.footerForeground};
     background-color: ${({ theme }) => theme.footerBackground};
     padding: 4rem 1rem;
 `
 
-const SiteTitle = styled.h1`
-    color: ${({ theme }) => theme.primary};
-`
+const SiteTitle = styled.h1``
 
 const SiteTitleLink = styled(Link)`
     color: ${({ theme }) => theme.primary};
