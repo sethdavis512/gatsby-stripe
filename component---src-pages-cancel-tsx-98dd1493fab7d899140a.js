@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{vLMe:function(e,n,t){"use strict";t.r(n);var a=t("q1tI"),c=t.n(a),u=t("soUV");n.default=function(){return c.a.createElement(u.a,null,c.a.createElement("h1",null,"Much Cancel!"))}}}]);
-//# sourceMappingURL=component---src-pages-cancel-tsx-98dd1493fab7d899140a.js.map
