@@ -66,7 +66,9 @@ const GlobalStyles = createGlobalStyle`
     body {
         margin: 0;
         padding: 0;
+        color: ${({ theme }) => theme.foreground};
         background-color: ${({ theme }) => theme.background};
+        transition: background-color 0.5s, color 0.5s;
     }
 
     a {
