@@ -64,7 +64,7 @@ const AddToCartButton = styled(Button)`
 
 const Product = ({ data }: ProductProps) => {
     const product = getProduct(data)
-    const [quantity, setQuantity] = useState(0)
+    const [quantity, setQuantity] = useState(1)
     const createHandleSetQuantity = (isDecrement: boolean) => () =>
         setQuantity(isDecrement ? quantity - 1 : quantity + 1)
 
@@ -117,7 +117,7 @@ const Product = ({ data }: ProductProps) => {
                                 onClick={createHandleAddToCart(product)}
                                 disabled={quantity === 0}
                             >
-                                Add {quantity} to cart
+                                Add to cart
                             </AddToCartButton>
                         </CartControls>
                     </ProductDetails>
