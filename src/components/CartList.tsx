@@ -10,7 +10,6 @@ import { getUniqueId } from '../utils'
 
 const CartUnorderedList = styled.ul`
     list-style-type: none;
-    color: ${({ theme }) => theme.foreground};
     margin: 0;
     padding: 0.5rem;
     margin-bottom: 1rem;
