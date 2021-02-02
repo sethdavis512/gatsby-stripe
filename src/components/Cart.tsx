@@ -10,13 +10,13 @@ import useSiteMetadata from '../hooks/useSiteMetaData'
 const CartContainer = styled.div`
     margin-right: 0.5rem;
     padding: 1rem;
-    height: 100vh;
     overflow: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
 
-    @media (min-width: 768px) {
-        position: relative;
+    @media (min-width: 970px) {
+        width: 300px;
+        height: 100vh;
     }
 `
 

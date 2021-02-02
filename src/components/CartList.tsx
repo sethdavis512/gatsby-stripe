@@ -13,7 +13,7 @@ const CartUnorderedList = styled.ul`
     margin: 0;
     padding: 0.5rem;
     margin-bottom: 1rem;
-    border-radius: 12px;
+    border-radius: ${({ theme }) => theme.borderRadius};
 `
 
 const CartListItem = styled.li`
@@ -29,9 +29,39 @@ const CartListItem = styled.li`
 `
 
 const CartListItemButton = styled(Button)`
-    padding: 0.5rem;
+    padding: 0.25rem 0.5rem;
     border-radius: 4px;
     margin-right: 4px;
+    color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.background};
+    border: 1px solid ${({ theme }) => theme.primary};
+`
+
+const CartListRemoveButton = styled(CartListItemButton)`
+    color: ${({ theme }) => theme.red};
+    border: 1px solid ${({ theme }) => theme.red};
+
+    :hover {
+        color: ${({ theme }) => theme.white};
+        background-color: ${({ theme }) => theme.red};
+        border-color: ${({ theme }) => theme.red}
+    }
+`
+
+const CartQuantityTag = styled.div`
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    background-color: ${({ theme }) => theme.primary};
+    border-radius: 100px;
+    color: ${({ theme }) => theme.white};
+    font-size: 1rem;
+    justify-content: center;
+`
+
+const CartQuantityTagInner = styled.div`
+    font-size: 0.8rem;
 `
 
 const CartList = ({ items }) => {
@@ -54,8 +84,13 @@ const CartList = ({ items }) => {
             {items && items.length ? (
                 items.map(item => (
                     <CartListItem key={getUniqueId(item.name)}>
+                        <CartQuantityTag>
+                            <CartQuantityTagInner>
+                                {item.quantity}
+                            </CartQuantityTagInner>
+                        </CartQuantityTag>
                         <div>
-                            {item.name} - {item.quantity}
+                            {item.name}
                         </div>
                         <div>
                             <CartListItemButton
@@ -68,11 +103,11 @@ const CartList = ({ items }) => {
                             >
                                 <FontAwesomeIcon icon={faPlus} />
                             </CartListItemButton>
-                            <CartListItemButton
+                            <CartListRemoveButton
                                 onClick={createHandleRemoveLineItem(item.id)}
                             >
                                 <FontAwesomeIcon icon={faTimes} />
-                            </CartListItemButton>
+                            </CartListRemoveButton>
                         </div>
                     </CartListItem>
                 ))

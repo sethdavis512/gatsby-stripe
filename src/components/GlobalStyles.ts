@@ -1,5 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
 
+import "@fontsource/montserrat/800.css"
+import "@fontsource/catamaran/400.css"
+import "@fontsource/catamaran/800.css"
+
 // Initial colors
 const white = '#ffffff'
 
@@ -7,7 +11,7 @@ const lightBlue = '#85D7FF'
 const blue = '#1FB6FF'
 const darkBlue = '#009EEB'
 
-const lightGreen = '#29EB7F'
+const lightGreen = '#13CE66'
 const green = '#13CE66'
 const darkGreen = '#0F9F4F'
 
@@ -24,6 +28,8 @@ const slate = '#3C4858'
 const steel = '#273444'
 const black = '#1F2D3D'
 
+const red = '#FF4949'
+
 // Themes
 export const lightTheme = {
     // General palette
@@ -31,16 +37,22 @@ export const lightTheme = {
     secondary: lightGreen,
     tertiary: green,
 
+    black,
+    white,
+    steel,
+    red,
+
     // Layout colors
     background: white,
     foreground: black,
-    footerForeground: white,
-    footerBackground: steel,
 
     // Component colors
     border: extraDarkSmoke,
     disabled: silver,
-    hover: snow
+    hover: snow,
+
+    // Borders
+    borderRadius: '12px'
 }
 
 export const darkTheme = {
@@ -49,7 +61,6 @@ export const darkTheme = {
     // Layout colors
     background: steel,
     foreground: white,
-    footerBackground: black,
 
     // Component colors
     border: black,
@@ -59,7 +70,7 @@ export const darkTheme = {
 const GlobalStyles = createGlobalStyle`
     * {
         box-sizing: border-box;
-        font-family: Helvetica, sans-serif;
+        font-family: "Catamaran", Helvetica, sans-serif;
     }
 
     html,
@@ -71,13 +82,18 @@ const GlobalStyles = createGlobalStyle`
         transition: background-color 0.5s, color 0.5s;
     }
 
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Montserrat", Helvetica, sans-serif;
+    }
+
     a {
         color: ${({ theme }) => theme.foreground};
         text-decoration: none;
-
-        :hover {
-            text-decoration: underline;
-        }
     }
 
     img {

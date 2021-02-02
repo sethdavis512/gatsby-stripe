@@ -21,9 +21,8 @@ const SiteWrapper = styled.div`
     display: flex;
     flex-flow: column-reverse nowrap;
 
-    @media (min-width: 768px) {
-        height: 100vh;
-        flex-flow: row wrap;
+    @media (min-width: 970px) {
+        flex-direction: row;
     }
 `
 
@@ -35,7 +34,7 @@ const MainContent = styled.div`
 `
 
 const SidebarContent = styled.aside`
-    border-left: 1px solid grey;
+    border-left: 1px solid ${({ theme }) => theme.border};
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 `
 
@@ -57,13 +56,16 @@ const Main = styled.main`
 `
 
 const Footer = styled.footer`
-    background-color: ${({ theme }) => theme.footerBackground};
+    color: ${({ theme }) => theme.white};
+    background-color: ${({ theme }) => theme.black};
     padding: 4rem 1rem;
 `
 
-const SiteTitle = styled.h1``
+const SiteTitle = styled.div``
 
 const SiteTitleLink = styled(Link)`
+    font-size: 1.25rem;
+    font-weight: bold;
     color: ${({ theme }) => theme.primary};
     text-decoration: none;
 

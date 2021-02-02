@@ -2,13 +2,15 @@ import styled from 'styled-components'
 
 const Button = styled.button`
     background-color: ${({ theme }) => theme.primary};
-    border-radius: 12px;
-    border: 1px solid ${({ theme }) => theme.secondary};
-    color: white;
-    font-size: 16px;
+    border-radius: ${({ theme }) => theme.borderRadius};
+    border: none;
+    color: ${({ theme }) => theme.white};
+    font-size: 1rem;
+    font-weight: 800;
     padding: 0.75rem 1.5rem;
 
     :hover {
+        color: ${({ theme }) => theme.white};
         background-color: ${({ theme }) => theme.secondary};
         border-color: ${({ theme }) => theme.primary};
     }

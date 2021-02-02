@@ -19,6 +19,12 @@ const HeroSection = styled(Section)`
     color: white;
 `
 
+const HeroSlogan = styled.h1`
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+`
+
 const ProductRow = styled.div`
     display: flex;
     flex-direction: column;
@@ -56,8 +62,11 @@ const IndexPage = () => {
             <SEO title="Home" />
             <HeroSection>
                 <Container>
-                    <h1>Welcome</h1>
-                    <h3>Get your soccer gear!</h3>
+                    <HeroSlogan>
+                        Soccer season is here
+                        <br />
+                        Time to get your gear!
+                    </HeroSlogan>
                 </Container>
             </HeroSection>
             <Section>

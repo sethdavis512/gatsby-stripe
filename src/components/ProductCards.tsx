@@ -10,11 +10,10 @@ import { getUniqueId } from '../utils'
 
 const ProductCard = styled.div`
     flex: 0 0 48%;
-    border: 1px solid ${({ theme }) => theme.border};
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
     margin-left: 1%;
     margin-bottom: 1rem;
-    border-radius: 12px;
+    border-radius: ${({ theme }) => theme.borderRadius};
 
     :hover {
         background-color: ${({ theme }) => theme.hover};
@@ -32,14 +31,22 @@ const ProductCardContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
     text-align: center;
-    padding-bottom: 15px;
 `
 
 const ProductCardLink = styled(Link)`
     width: 100%;
     padding: 1rem 1rem 0 1rem;
+`
+
+const ProductCardTitle = styled.p`
+    font-size: 1rem;
+    padding: 0;
+    margin: 0 0 1rem;
+`
+
+const CardButton = styled(Button)`
+    margin: 0 1rem 1rem;
 `
 
 const ProductCards = ({ products }) => {
@@ -61,9 +68,11 @@ const ProductCards = ({ products }) => {
                             width="100"
                         />
                     )}
-                    <p>{product.name}</p>
+                    <ProductCardTitle>{product.name}</ProductCardTitle>
                 </ProductCardLink>
-                <Button onClick={createAddToCart(product)}>Add to cart</Button>
+                <CardButton onClick={createAddToCart(product)}>
+                    Add to cart
+                </CardButton>
             </ProductCardContent>
         </ProductCard>
     ))
