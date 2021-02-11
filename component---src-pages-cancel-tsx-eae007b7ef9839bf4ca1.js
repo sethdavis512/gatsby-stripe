@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{vLMe:function(e,n,t){"use strict";t.r(n);var a=t("q1tI"),l=t.n(a),r=t("Wbzz"),u=t("Gmu+"),c=t("soUV");n.default=function(){return l.a.createElement(c.a,null,l.a.createElement(u.a,null,l.a.createElement("h1",null,"Cancelled."),l.a.createElement("p",null,"You have not been charged."),l.a.createElement(r.Link,{to:"/"},"Return to store")))}}}]);
+//# sourceMappingURL=component---src-pages-cancel-tsx-eae007b7ef9839bf4ca1.js.map
