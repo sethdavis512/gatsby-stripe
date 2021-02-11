@@ -8,8 +8,10 @@ import {
     CartListItemButton,
     CartQuantityTag,
     CartQuantityTagInner,
-    CartUnorderedList
-} from './styles/CartListStyles'
+    CartUnorderedList,
+    CartListRemoveButton
+} from './styles/CartStyles'
+import { Button, Flex } from './styles/CommonStyles'
 
 const CartList = ({ items }) => {
     const [, cartActions] = useCart()
@@ -31,13 +33,18 @@ const CartList = ({ items }) => {
             {items && items.length ? (
                 items.map(item => (
                     <CartListItem key={getUniqueId(item.name)}>
-                        <CartQuantityTag>
-                            <CartQuantityTagInner>
-                                {item.quantity}
-                            </CartQuantityTagInner>
-                        </CartQuantityTag>
-                        <div>{item.name}</div>
-                        <div>
+                        <Flex align="flex-start">
+                            <CartQuantityTag>
+                                <CartQuantityTagInner>
+                                    {item.quantity}
+                                </CartQuantityTagInner>
+                            </CartQuantityTag>
+                            <div>
+                                {item.name} - $
+                                {((item.quantity * item.price) / 100).toFixed(
+                                    2
+                                )}
+                            </div>
                             <CartListItemButton
                                 onClick={createHandleRemoveItem(item.id)}
                             >
@@ -48,12 +55,12 @@ const CartList = ({ items }) => {
                             >
                                 <FontAwesomeIcon icon={faPlus} />
                             </CartListItemButton>
-                            <CartListItemButton
+                            <CartListRemoveButton
                                 onClick={createHandleRemoveLineItem(item.id)}
                             >
                                 <FontAwesomeIcon icon={faTimes} />
-                            </CartListItemButton>
-                        </div>
+                            </CartListRemoveButton>
+                        </Flex>
                     </CartListItem>
                 ))
             ) : (

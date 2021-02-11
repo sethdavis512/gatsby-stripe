@@ -1,7 +1,7 @@
 import React from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 
-import { Button } from './styles/ButtonStyles'
+import { Button } from './styles/CommonStyles'
 import { CartContainer, CartButtonTray } from './styles/CartStyles'
 import CartList from './CartList'
 import useCart from '../hooks/useCart'

@@ -4,11 +4,12 @@ import { Link } from 'gatsby';
 export const SiteWrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 300px;
+    min-height: 100vh;
 `
 
 export const SiteContent = styled.div`
     grid-column: 1;
-    height: 100vh;
+    min-height: 100vh;
 
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -16,6 +17,7 @@ export const SiteContent = styled.div`
 
 export const SidebarContent = styled.aside`
     grid-column: 2 / 3;
+    grid-row: 1 / 3;
     border-left: 1px solid ${({ theme }) => theme.border};
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 `

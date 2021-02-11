@@ -92,7 +92,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     a {
-        color: ${({ theme }) => theme.foreground};
+        color: ${({ theme }) => theme.primary};
         text-decoration: none;
     }
 

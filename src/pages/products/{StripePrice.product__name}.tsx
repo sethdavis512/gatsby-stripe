@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faPlus,
@@ -7,8 +7,8 @@ import {
     faShoppingCart
 } from '@fortawesome/free-solid-svg-icons'
 
-import { Button } from '../../components/styles/ButtonStyles'
-import { Container } from '../../components/styles/ContainerStyles'
+import { Button } from '../../components/styles/CommonStyles'
+import { Container } from '../../components/styles/CommonStyles'
 import { getProduct, getUniqueId } from '../../utils'
 import {
     ProductRow,
@@ -39,6 +39,7 @@ const Product = ({ data }: ProductProps) => {
     return (
         <Layout>
             <Container>
+                <div><Link to="/">Back to Products</Link></div>
                 <ProductRow>
                     <ProductImage>
                         {product && product.images && product.images.length

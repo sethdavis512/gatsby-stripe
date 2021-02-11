@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Container } from '../components/styles/ContainerStyles'
+import { Container } from '../components/styles/CommonStyles'
 import Layout from '../components/Layout'
 import useSiteMetadata from '../hooks/useSiteMetaData'
 

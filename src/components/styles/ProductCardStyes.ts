@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'gatsby'
-import { Button } from './ButtonStyles'
+import { Button } from './CommonStyles'
 
 export const ProductCard = styled.div`
     flex: 0 0 48%;
