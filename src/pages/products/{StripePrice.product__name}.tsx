@@ -1,66 +1,30 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
-import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import {
+    faPlus,
+    faMinus,
+    faShoppingCart
+} from '@fortawesome/free-solid-svg-icons'
 
-import Button from '../../components/Button'
-import Container from '../../components/Container'
+import { Button } from '../../components/styles/ButtonStyles'
+import { Container } from '../../components/styles/ContainerStyles'
+import { getProduct, getUniqueId } from '../../utils'
+import {
+    ProductRow,
+    ProductImage,
+    ProductDetails,
+    CartControls,
+    QuantityControls,
+    Price,
+    Quantity
+} from '../../components/styles/DetailPageStyles'
 import Layout from '../../components/Layout'
 import useCart from '../../hooks/useCart'
-
-import { getProduct, getUniqueId } from '../../utils'
 
 interface ProductProps {
     data: any
 }
-
-const ProductRow = styled.div`
-    @media (min-width: 768px) {
-        display: flex;
-        margin: 0 auto;
-    }
-`
-
-const ProductImage = styled.div`
-    @media (min-width: 768px) {
-        flex: 0 0 40%;
-    }
-`
-
-const ProductDetails = styled.div`
-    padding: 0 1rem 1rem;
-
-    @media (min-width: 768px) {
-        flex: 0 0 60%;
-    }
-`
-
-const CartControls = styled.div``
-
-const QuantityControls = styled.div`
-    margin-bottom: 1rem;
-`
-
-const Price = styled.h4`
-    font-size: 2rem;
-    margin: 1rem 0;
-`
-
-const Quantity = styled.span`
-    padding: 0 1rem;
-    font-weight: bold;
-`
-
-const AddToCartButton = styled(Button)`
-    background-color: ${({ theme }) => theme.tertiary};
-    border-color: ${({ theme }) => theme.tertiary};
-
-    :hover {
-        background-color: green;
-        border-color: green;
-    }
-`
 
 const Product = ({ data }: ProductProps) => {
     const product = getProduct(data)
@@ -113,12 +77,13 @@ const Product = ({ data }: ProductProps) => {
                                     <FontAwesomeIcon icon={faPlus} />
                                 </Button>
                             </QuantityControls>
-                            <AddToCartButton
+                            <Button
                                 onClick={createHandleAddToCart(product)}
                                 disabled={quantity === 0}
                             >
-                                Add to cart
-                            </AddToCartButton>
+                                <FontAwesomeIcon icon={faShoppingCart} /> Add to
+                                cart
+                            </Button>
                         </CartControls>
                     </ProductDetails>
                 </ProductRow>

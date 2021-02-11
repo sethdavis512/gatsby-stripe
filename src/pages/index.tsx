@@ -2,24 +2,38 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
 
-import Container from '../components/Container'
+import { Container } from '../components/styles/ContainerStyles'
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 import ProductCards from '../components/ProductCards'
 import { getProducts } from '../utils'
+import bgUrl from '../images/soccer-ball-pattern.jpg'
 
 const Section = styled.section`
     padding: 1rem;
 `
 
 const HeroSection = styled(Section)`
+    position: relative;
     padding: 3rem 1rem;
     margin-bottom: 1rem;
     background-color: ${({ theme }) => theme.primary};
     color: white;
+
+    &:before {
+        content: "";
+        background-image: url(${bgUrl});
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        opacity: 0.1;
+    }
 `
 
 const HeroSlogan = styled.h1`
+    position: relative;
     font-size: 2rem;
     margin: 0;
     padding: 0;

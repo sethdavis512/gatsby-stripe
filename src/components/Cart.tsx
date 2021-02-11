@@ -1,29 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
 import { loadStripe } from '@stripe/stripe-js'
 
-import useCart from '../hooks/useCart'
-import Button from './Button'
+import { Button } from './styles/ButtonStyles'
+import { CartContainer, CartButtonTray } from './styles/CartStyles'
 import CartList from './CartList'
+import useCart from '../hooks/useCart'
 import useSiteMetadata from '../hooks/useSiteMetaData'
-
-const CartContainer = styled.div`
-    margin-right: 0.5rem;
-    padding: 1rem;
-    overflow: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-
-    @media (min-width: 970px) {
-        width: 300px;
-        height: 100vh;
-    }
-`
-
-const CartButtonTray = styled.div`
-    display: flex;
-    justify-content: space-between;
-`
 
 const stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
 
@@ -53,9 +35,7 @@ const Cart = () => {
 
     return (
         <CartContainer>
-            <h3>
-                Cart
-            </h3>
+            <h3>Cart</h3>
             <CartList items={cart.items} />
             <CartButtonTray>
                 <Button onClick={cartActions.clearCart}>Clear cart</Button>
