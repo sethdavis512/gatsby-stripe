@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import soccerBallPattern from '../../images/soccer-ball-pattern.jpg'
 
 export const StyledButton = styled.button`
     background-color: ${({ theme }) => theme.primary};
@@ -23,7 +22,31 @@ export const StyledButton = styled.button`
 export const Button = styled(StyledButton)`
     font-size: 1rem;
     font-weight: 800;
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    > :not(:last-child) {
+        margin-right: 8px;
+    }
+`
+
+export const SecondaryButton = styled(Button)`
+    background-color: ${({ theme }) => theme.secondary};
+`
+
+export const HollowButton = styled(Button)`
+    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.primary};
+    border: 1px solid ${({ theme }) => theme.primary};
+
+    :hover {
+        background-color: ${({ theme }) => theme.background};
+        border-color: ${({ theme }) => theme.secondary};
+        color: ${({ theme }) => theme.primary};
+    }
 `
 
 export const Container = styled.div`
@@ -34,8 +57,8 @@ export const Container = styled.div`
 export const Flex = styled.div`
     display: flex;
     flex-direction: ${props => (props.isColumn ? 'column' : 'row')};
-    align-items: ${props => props.align};
-    justify-content: ${props => props.justify};
+    align-items: ${props => props.align || 'center'};
+    justify-content: ${props => props.justify || 'center'};
 `
 
 export const Section = styled.section`
@@ -43,29 +66,23 @@ export const Section = styled.section`
 `
 
 // https://coder-coder.com/background-image-opacity/
-export const HeroSection = styled(Section)`
-    position: relative;
+export const Hero = styled(Section)`
     padding: 3rem 1rem;
     margin-bottom: 1rem;
     background-color: ${({ theme }) => theme.primary};
     color: white;
-
-    &:before {
-        content: '';
-        background-image: url(${soccerBallPattern});
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        bottom: 0px;
-        left: 0px;
-        opacity: 0.1;
-    }
+    height: ${props => props.height};
+    background-image: url(${props => props.img});
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
 `
 
 export const HeroSlogan = styled.h1`
+    /* Must be relative otherwise image will overlap */
     position: relative;
     font-size: 2rem;
-    margin: 0;
+    margin: 0 0 1rem 0;
     padding: 0;
 `
 

@@ -4,14 +4,14 @@ import kebabCase from 'lodash/kebabCase'
 import useCart from '../hooks/useCart'
 import { getUniqueId } from '../utils'
 import {
-    CardButton,
     ProductCard,
+    ProductCardButton,
     ProductCardContent,
     ProductCardLink,
     ProductCardTitle
 } from './styles/ProductCardStyes'
 
-const ProductCards = ({ products }) => {
+const ProductCards = ({ products, large }) => {
     const [, cartActions] = useCart()
 
     const createAddToCart = product => () => {
@@ -19,7 +19,7 @@ const ProductCards = ({ products }) => {
     }
 
     return products.map(product => (
-        <ProductCard key={getUniqueId('product-card')}>
+        <ProductCard large={large} key={getUniqueId('product-card')}>
             <ProductCardContent>
                 <ProductCardLink to={`products/${kebabCase(product.name)}`}>
                     {product.images && (
@@ -32,9 +32,9 @@ const ProductCards = ({ products }) => {
                     )}
                     <ProductCardTitle>{product.name}</ProductCardTitle>
                 </ProductCardLink>
-                <CardButton onClick={createAddToCart(product)}>
+                <ProductCardButton onClick={createAddToCart(product)}>
                     Add to cart
-                </CardButton>
+                </ProductCardButton>
             </ProductCardContent>
         </ProductCard>
     ))

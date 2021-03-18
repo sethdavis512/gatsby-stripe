@@ -14,8 +14,8 @@ export const ProductCard = styled.div`
     }
 
     @media (min-width: 768px) {
-        flex: 0 0 31%;
-        margin-left: 1rem;
+        flex: 0 0 ${({ large }) => (large ? '48%' : '23%')};
+        margin-left: 2%;
         margin-bottom: 1rem;
     }
 `
@@ -39,6 +39,6 @@ export const ProductCardTitle = styled.p`
     margin: 0 0 1rem;
 `
 
-export const CardButton = styled(Button)`
+export const ProductCardButton = styled(Button)`
     margin: 0 1rem 1rem;
 `
